@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mashibing.serviceorder.dao.TblOrderEventDao">
+  <resultMap id="BaseResultMap" type="com.mashibing.serviceorder.entity.TblOrderEvent">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="order_type" jdbcType="VARCHAR" property="orderType" />
+    <result column="process" jdbcType="VARCHAR" property="process" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="create_time" jdbcType="DATE" property="createTime" />
+    <result column="update_time" jdbcType="DATE" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, order_type, `process`, content, create_time, update_time
+  </sql>
+
+
+  <select id="selectByOrderType" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"></include>
+    from tbl_order_event
+    where order_type = #{orderType}
+  </select>
+
+  <update id="updateEvent" parameterType="java.lang.Integer">
+    update tbl_order_event
+    set order_Type = 2
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tbl_order_event
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tbl_order_event
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mashibing.serviceorder.entity.TblOrderEvent" useGeneratedKeys="true">
+    insert into tbl_order_event (order_type, `process`, content, 
+      create_time, update_time)
+    values (#{orderType,jdbcType=VARCHAR}, #{process,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=DATE}, #{updateTime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mashibing.serviceorder.entity.TblOrderEvent" useGeneratedKeys="true">
+    insert into tbl_order_event
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderType != null">
+        order_type,
+      </if>
+      <if test="process != null">
+        `process`,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderType != null">
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null">
+        #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mashibing.serviceorder.entity.TblOrderEvent">
+    update tbl_order_event
+    <set>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="process != null">
+        `process` = #{process,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=DATE},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mashibing.serviceorder.entity.TblOrderEvent">
+    update tbl_order_event
+    set order_type = #{orderType,jdbcType=VARCHAR},
+      `process` = #{process,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=DATE},
+      update_time = #{updateTime,jdbcType=DATE}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,13 @@
+
+server:
+  port: 8082
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    #拉取间隔时间
+    registry-fetch-interval-seconds: 30
+    enabled: true
+spring:
+  application:
+    name: service-verification-code

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-passenger" />
+        <module name="service-verification-code" />
+        <module name="cloud-zuul" />
+        <module name="service-passenger-user" />
+        <module name="internal-common" />
+        <module name="cloud-eureka" />
+        <module name="service-sms" />
+        <module name="service-pay" />
+        <module name="service-order" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-passenger" options="-parameters" />
+      <module name="cloud-eureka" options="-parameters" />
+      <module name="cloud-zuul" options="-parameters" />
+      <module name="internal-common" options="-parameters" />
+      <module name="service-order" options="-parameters" />
+      <module name="service-passenger-user" options="-parameters" />
+      <module name="service-pay" options="-parameters" />
+      <module name="service-sms" options="-parameters" />
+      <module name="service-verification-code" options="-parameters" />
+    </option>
+  </component>
+</project>

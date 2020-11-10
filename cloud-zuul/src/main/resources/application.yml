@@ -1,0 +1,81 @@
+
+server:
+  port: 9100
+
+spring:
+  application:
+    name: online-taxi-zuul
+  #数据库连接配置
+  datasource:
+    #配置当前使用的数据源的操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #配置MySQL的驱动程序类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #数据库连接地址
+    url: jdbc:mysql://localhost:3306/online-taxi-three?characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    #数据库连接用户名
+    username: root
+    #数据库连接密码
+    password: root
+    #进行数据库连接池的配置
+    dbcp2:
+      #初始化提供的连接数
+      initial-size: 5
+      #数据库连接池的最小维持连接数
+      min-idle: 5
+      #最大的连接数
+      max-total: 5
+      #等待连接获取的最大超时时间
+      max-wait-millis: 200
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+      #拉取间隔时间
+    registry-fetch-interval-seconds: 30
+    enabled: true
+  instance:
+    #心跳间隔时间
+    lease-renewal-interval-in-seconds: 30
+    hostname: localhost
+    instance-id: online-taxi-zuul
+
+
+#mybatis配置
+mybatis:
+  mapper-locations:
+    - classpath:mapper/*.xml
+
+
+zuul:
+  #以下的配置，表示忽略下面的值向微服务传播；  以下配置为控表示：所有请求头都传递到微服务中
+  sensitive-headers:
+
+  #此处为测试：动态路由问题_路由转发
+  routes:
+    xxxx: /zuul-api-driver/**
+    custom-zuul-name:
+      path: /zuul-api-driver/**
+      url: http://localhost:8003/
+
+  #此处测试yml的使用 以及路由转发
+    xxx:
+      path: /forward/**
+      url: forward:/myYml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      enabled: true
+    routes:
+      enabled: true
