@@ -13,9 +13,12 @@
         <module name="service-passenger-user" />
         <module name="internal-common" />
         <module name="cloud-eureka" />
-        <module name="service-sms" />
+        <module name="lnc-tm" />
         <module name="service-pay" />
+        <module name="service-sms" />
+        <module name="lnc-pay" />
         <module name="service-order" />
+        <module name="lnc-order" />
       </profile>
     </annotationProcessing>
   </component>
@@ -25,6 +28,9 @@
       <module name="cloud-eureka" options="-parameters" />
       <module name="cloud-zuul" options="-parameters" />
       <module name="internal-common" options="-parameters" />
+      <module name="lnc-order" options="-parameters" />
+      <module name="lnc-pay" options="-parameters" />
+      <module name="lnc-tm" options="-parameters" />
       <module name="service-order" options="-parameters" />
       <module name="service-passenger-user" options="-parameters" />
       <module name="service-pay" options="-parameters" />
