@@ -5,6 +5,7 @@ import com.netflix.loadbalancer.AbstractLoadBalancerRule;
 import com.netflix.loadbalancer.ILoadBalancer;
 import com.netflix.loadbalancer.Server;
 import com.netflix.niws.loadbalancer.DiscoveryEnabledServer;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,6 @@ public class GrayRule extends AbstractLoadBalancerRule {
 
     @Override
     public Server choose(Object key) {
-
         return choose(getLoadBalancer(),key);
     }
 
@@ -52,7 +52,7 @@ public class GrayRule extends AbstractLoadBalancerRule {
             //根据用户选服务
             for (int i = 0; i < reachableServers.size(); i++) {
                 server = reachableServers.get(i);
-                Server.MetaInfo metaInfo = server.getMetaInfo();
+                //Server.MetaInfo metaInfo = server.getMetaInfo();
                 Map<String, String> metadata = ((DiscoveryEnabledServer) server).getInstanceInfo().getMetadata();
                 String version1 = metadata.get("version");
                 if (version.trim().equals(version1)){

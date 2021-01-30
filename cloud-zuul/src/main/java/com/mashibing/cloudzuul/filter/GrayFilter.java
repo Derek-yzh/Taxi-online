@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Description: 网关灰度
  */
 @Component
+@SuppressWarnings("all")
 public class GrayFilter extends ZuulFilter {
     @Override
     public String filterType() {
@@ -32,9 +33,9 @@ public class GrayFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        Object limit = RequestContext.getCurrentContext().get("limit");
+        return true;
+        //Object limit = RequestContext.getCurrentContext().get("limit");
         //return "true".equals(limit);
-        return false;
     }
 
     @Autowired
@@ -47,14 +48,14 @@ public class GrayFilter extends ZuulFilter {
         HttpServletRequest request = currentContext.getRequest();
 
         int userId = Integer.parseInt(request.getHeader("userId"));
-        if (userId == 1) {
-            //查库
-            CommonGrayRule commonGrayRule = commonGrayRuleDaoCustomer.selectByUserId(userId);
-            String version = commonGrayRule.getMetaVersion();
-            RibbonFilterContextHolder.getCurrentContext().add("version", version);
-        }else {
-
+        //查库
+        CommonGrayRule commonGrayRule = commonGrayRuleDaoCustomer.selectByUserId(userId);
+        if (commonGrayRule == null){
+            return null;
         }
+        String version = commonGrayRule.getMetaVersion();
+        RibbonFilterContextHolder.getCurrentContext().add("version", version);
+
         return null;
     }
 

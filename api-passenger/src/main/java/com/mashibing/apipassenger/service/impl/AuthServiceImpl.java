@@ -25,7 +25,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ResponseResult auth(String passengerPhone, String code) {
-        //验证验证码
+        //校验验证码
         ResponseResult responseResult = serviceVerificationCodeRestTemplateService.verifyCode(IdentityConstant.PASSENGER,passengerPhone,code);
         if (responseResult.getCode() != CommonStatusEnum.SUCCESS.getCode()){
             return ResponseResult.fail("登录失败：验证码校验失败");

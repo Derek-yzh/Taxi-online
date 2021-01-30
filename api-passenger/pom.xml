@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.mashibing</groupId>
     <artifactId>api-passenger</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>   <!-- "-SNAPSHOT" 不能上正式 ： 有这个表示服务器有更新就拉取更新内容-->
     <name>api-passenger</name>
     <description>Demo project for Spring Boot</description>
 
@@ -28,7 +28,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -45,6 +44,8 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -73,6 +74,11 @@
             <artifactId>ribbon-discovery-filter-spring-cloud-starter</artifactId>
             <version>2.1.0</version>
         </dependency>
+
+
+
+
+
 
 
     </dependencies>

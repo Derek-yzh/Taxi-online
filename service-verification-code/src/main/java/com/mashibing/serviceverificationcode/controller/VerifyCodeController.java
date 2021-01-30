@@ -13,7 +13,7 @@ import net.sf.json.JSONObject;
 /**
  * @Author: Derek
  * @DateTime: 2020/10/31 20:10
- * @Description: 短信验证
+ * @Description: 验证码
  */
 @RestController
 @RequestMapping("/verify-code")
@@ -25,12 +25,12 @@ public class VerifyCodeController {
 
     /**
      * 根据身份，手机号，生成验证码
-     * @param identity
-     * @param phoneNumber
-     * @return
+     * @param identity 身份
+     * @param phoneNumber 手机号
+     * @return 返回验证码
      */
     @GetMapping("/generate/{identity}/{phoneNumber}")
-    public ResponseResult generate(@PathVariable("identity") int identity,@PathVariable("phoneNumber") String phoneNumber){
+    public ResponseResult generate(@PathVariable("identity") int identity, @PathVariable("phoneNumber") String phoneNumber){
         log.info("/generate/{identity}/{phoneNumber} ： 身份类型："+identity+",手机号："+phoneNumber);
         return verifyCodeService.generate(identity,phoneNumber);
     }
@@ -46,6 +46,11 @@ public class VerifyCodeController {
         return verifyCodeService.verify(identity,phoneNumber,code);
     }
 
+    @GetMapping("/get/{identity}/{phoneNumber}")
+    public ResponseResult get(@PathVariable("identity") int identity, @PathVariable("phoneNumber") String phoneNumber){
+        log.info("/get/{identity}/{phoneNumber} ： 身份类型："+identity+",手机号："+phoneNumber);
+        return verifyCodeService.get(identity,phoneNumber);
+    }
 
 
 }

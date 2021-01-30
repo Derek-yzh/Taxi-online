@@ -45,7 +45,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
     /**
-     * 自定义返回错误数据
+     * 自定义返回错误数据(不包含数据)
      *
      * @param code    错误代码
      * @param message 错误消息
@@ -56,6 +56,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
     /**
+     * 自定义返回错误数据
      * @param code    错误代码
      * @param message 错误消息
      * @param data    错误内容

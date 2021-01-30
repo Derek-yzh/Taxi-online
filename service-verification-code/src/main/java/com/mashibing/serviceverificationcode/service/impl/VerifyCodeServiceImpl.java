@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
  * @Description: TODO
  */
 @Service
+@SuppressWarnings("all")
 public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Autowired
@@ -30,7 +31,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         //校验 发送时限，三挡验证，不能无限制发短信
         checkSendCodeTimeLimit(phoneNumber);
 
-        // 0.9*9=8.1+1 9,去掉首位为0的情况。 0.11225478552211(0.0-<1)
+        // 0-1  1-10  100000-1000000 :六位
         String code = String.valueOf((int)( (Math.random()*9+1)*Math.pow(10,5)));
 
         //生成redis key
@@ -46,11 +47,18 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         return ResponseResult.success(data);
     }
 
+    /**
+     * 校验 发送时限，三挡验证，不能无限制发短信 （客户端也做控制）
+     * 判断是否有 限制1分钟，10分钟，24小时。
+     *      redis 一分钟发了三次 不让你发了。 一小时发了10次 不让你发了
+     * @param phoneNumber
+     * @return
+     */
     private ResponseResult checkSendCodeTimeLimit(String phoneNumber) {
-        //判断是否有 限制1分钟，10分钟，24小时。
 
         return ResponseResult.success("");
     }
+
 
     @Override
     public ResponseResult verify(int identity, String phoneNumber, String code) {
@@ -61,13 +69,24 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
         String key = keyPre + phoneNumber;
         BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
         String redisCode = codeRedis.get();
-
         if (StringUtils.isNotBlank(code)
                 && code.trim().equals(redisCode.trim())){
             return ResponseResult.success("");
         }else {
             return ResponseResult.fail(CommonStatusEnum.VERIFY_CODE_ERROR.getCode(),CommonStatusEnum.VERIFY_CODE_ERROR.getValue());
         }
+    }
+
+    @Override
+    public ResponseResult get(int identity, String phoneNumber) {
+
+        //生成redis key
+        String keyPre = generateKeyPreByIdentity(identity);
+        String key = keyPre + phoneNumber;
+        //存redis，2分钟过期
+        BoundValueOperations<String, String> codeRedis = redisTemplate.boundValueOps(key);
+
+        return ResponseResult.success(codeRedis.get());
     }
 
     /**

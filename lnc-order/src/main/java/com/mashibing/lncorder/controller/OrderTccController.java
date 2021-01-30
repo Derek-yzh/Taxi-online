@@ -23,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping
+@SuppressWarnings("all")
 public class OrderTccController {
 
     @Autowired
@@ -60,7 +61,7 @@ public class OrderTccController {
         System.out.println("a:"+a);
         lcnOrderDao.deleteByPrimaryKey(a);
         System.out.println("order cancel");
-        return "新增订单成功";
+        return "新增订单失败";
     }
 
 }

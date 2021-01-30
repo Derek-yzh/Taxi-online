@@ -17,6 +17,8 @@
         <option value="$PROJECT_DIR$/lnc-tm/pom.xml" />
         <option value="$PROJECT_DIR$/lnc-order/pom.xml" />
         <option value="$PROJECT_DIR$/lnc-pay/pom.xml" />
+        <option value="$PROJECT_DIR$/api-driver/pom.xml" />
+        <option value="$PROJECT_DIR$/oauth-1/pom.xml" />
       </list>
     </option>
   </component>

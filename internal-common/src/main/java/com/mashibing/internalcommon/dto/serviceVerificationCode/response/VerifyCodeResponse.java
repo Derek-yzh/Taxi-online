@@ -5,7 +5,7 @@ import lombok.Data;
 /**
  * @Author: Derek
  * @DateTime: 2020/10/31 20:53
- * @Description: TODO
+ * @Description: VerifyCode Response
  */
 @Data
 public class VerifyCodeResponse {

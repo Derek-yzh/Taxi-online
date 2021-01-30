@@ -11,4 +11,7 @@ public interface ServiceVerificationCodeRestTemplateService {
     ResponseResult generatorCode(int passenger, String phoneNumber);
 
     ResponseResult verifyCode(int passenger, String passengerPhone, String code);
+
+    ResponseResult get(int passenger, String phoneNumber);
+
 }

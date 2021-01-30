@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/4 12:54
- * @Description: TODO
+ * @Description: RibbonParameters
  */
 @Component
 public class RibbonParameters {

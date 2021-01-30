@@ -38,15 +38,20 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         }else {
             return ResponseResult.fail("获取验证码失败");
         }
-
         String code = verifyCodeResponse.getCode();
 
+        //发送短信
         ResponseResult result = serviceSmsRestTemplateService.sendSms(phoneNumber,code);
         if (result == null || result.getCode() != CommonStatusEnum.SUCCESS.getCode()){
             return ResponseResult.fail("发送短信 失败");
         }
 
         return result;
+    }
+
+    @Override
+    public ResponseResult get(String phoneNumber) {
+        return serviceVerificationCodeRestTemplateService.get(IdentityConstant.PASSENGER,phoneNumber);
     }
 
 }

@@ -25,7 +25,8 @@ public class GetIpFilter extends ZuulFilter {
 
     @Override
     public boolean shouldFilter() {
-        return false;
+        RequestContext context = RequestContext.getCurrentContext();
+        return context.sendZuulResponse();
     }
 
     @Override

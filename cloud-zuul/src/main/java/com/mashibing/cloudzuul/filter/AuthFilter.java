@@ -34,8 +34,10 @@ public class AuthFilter extends ZuulFilter {
     @Override
     public boolean shouldFilter() {
         //获取上下文
-        Object limit = RequestContext.getCurrentContext().get("limit");
-        return "true".equals(limit);
+        /*Object limit = RequestContext.getCurrentContext().get("limit");
+        return "true".equals(limit);*/
+
+        return true;
     }
 
     /**
@@ -45,7 +47,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public Object run() throws ZuulException {
-        System.out.println("鉴权");
+        System.out.println("鉴权...");
 
         //获取上下文（重要！ 贯穿所有filter，包含所有参数）
         RequestContext requestContext = RequestContext.getCurrentContext();
@@ -56,10 +58,10 @@ public class AuthFilter extends ZuulFilter {
             JwtInfo tokenJwtInfo = JwtUtil.parseToken(token);
 
             if (null != tokenJwtInfo){
-                String tokenUserId = tokenJwtInfo.getSubject();
+                String tokenUser = tokenJwtInfo.getSubject();
                 Long tokenIssueDate = tokenJwtInfo.getIssueDate();
 
-                BoundValueOperations<String, String> stringStringBoundValueOperations = redisTemplate.boundValueOps(RedisKeyPrefixConstant.PASSENGER_LOGIN_TOKEN_APP_KEY_PRE + tokenUserId);
+                BoundValueOperations<String, String> stringStringBoundValueOperations = redisTemplate.boundValueOps(tokenUser);
                 String redisToken = stringStringBoundValueOperations.get();
                 if (redisToken.equals(token)){
                     return null;
@@ -69,8 +71,8 @@ public class AuthFilter extends ZuulFilter {
 
         }
 
-        //不往下走，还走剩下的过滤器，但是不向后面的服务转发
-        requestContext.setSendZuulResponse(false);
+        requestContext.setSendZuulResponse(false); //设置为false可以在后面filter的shouldFilter做判断走不走
+
         requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
         requestContext.setResponseBody("auth fail");
 
@@ -85,7 +87,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public String filterType() {
-        return FilterConstants.PRE_TYPE;
+        return FilterConstants.PRE_TYPE; //在所有过滤器之前
     }
 
     /**

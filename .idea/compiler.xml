@@ -7,23 +7,26 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lnc-pay" />
-        <module name="api-passenger" />
-        <module name="service-verification-code" />
-        <module name="cloud-zuul" />
-        <module name="service-passenger-user" />
-        <module name="internal-common" />
-        <module name="cloud-eureka" />
+        <module name="api-driver" />
         <module name="lnc-tm" />
-        <module name="service-sms" />
-        <module name="service-pay" />
+        <module name="cloud-zuul" />
         <module name="service-order" />
+        <module name="api-passenger" />
+        <module name="service-passenger-user" />
+        <module name="oauth-1" />
+        <module name="cloud-eureka" />
+        <module name="lnc-pay" />
+        <module name="service-pay" />
+        <module name="internal-common" />
+        <module name="service-sms" />
+        <module name="service-verification-code" />
         <module name="lnc-order" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="api-driver" options="-parameters" />
       <module name="api-passenger" options="-parameters" />
       <module name="cloud-eureka" options="-parameters" />
       <module name="cloud-zuul" options="-parameters" />

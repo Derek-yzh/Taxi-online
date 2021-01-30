@@ -31,6 +31,7 @@ public class ServiceSmsRestTemplateServiceImpl implements ServiceSmsRestTemplate
         String uri = "/send/sms-template";
 
         String url = http + serviceName + uri;
+
         SmsSendRequest smsSendRequest = new SmsSendRequest();
         String[] phoneNumbers = new String[] {phoneNumber};
         smsSendRequest.setReceivers(phoneNumbers);

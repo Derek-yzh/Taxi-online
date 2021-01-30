@@ -1,5 +1,6 @@
 package com.mashibing.apipassenger;
 
+import com.mashibing.apipassenger.annotation.ExcudeRibbonConfig;
 import com.mashibing.apipassenger.gray.GrayRibbonConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,11 +15,11 @@ import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 @RestController
-/*@ComponentScan(
+@ComponentScan(
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcudeRibbonConfig.class)
-})*/
-//@RibbonClient(name = "service-sms",configuration = GrayRibbonConfiguration.class)
+})
+//@RibbonClient(name = "service-sms",configuration = GrayRibbonConfiguration.class) //服务之间灰度发布
 public class ApiPassengerApplication {
 
     public static void main(String[] args) {

@@ -17,7 +17,7 @@ import java.util.List;
  * @DateTime: 2020/11/9 13:27
  * @Description: TODO
  */
-@Component
+//@Component
 public class ProduceTask {
 
     @Autowired

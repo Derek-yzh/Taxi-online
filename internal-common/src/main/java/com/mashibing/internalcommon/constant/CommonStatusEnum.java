@@ -5,13 +5,13 @@ import lombok.Getter;
 /**
  * @Author: Derek
  * @DateTime: 2020/10/31 20:13
- * @Description: TODO
+ * @Description: TODO CommonStatusEnum
  */
+@SuppressWarnings("all")
 public enum CommonStatusEnum {
 
     /**短信验证码服务	10001-10099*/
     VERIFY_CODE_ERROR(10001,"短信验证码验证失败"),
-
     /**
      * 一分钟内相同验证码错误达3次，请1分钟后登录
      */
@@ -26,9 +26,13 @@ public enum CommonStatusEnum {
     VERIFICATION_ONE_HOUR_ERROR(10004,"您今天登录失败的次数过多,请 24小时后再重试"),
 
 
+
+
     /**api-passenger 乘客api  10101-10199*/
     PHONENUMBER_EMPTY(10101,"手机号为空"),
     PHONENUMBER_ERROR(10102,"手机号格式不正确"),
+
+
 
 
     /**
@@ -55,4 +59,5 @@ public enum CommonStatusEnum {
         this.code = code;
         this.value = value;
     }
+
 }

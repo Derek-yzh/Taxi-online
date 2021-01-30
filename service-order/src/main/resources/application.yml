@@ -1,17 +1,21 @@
 
 
-server:
-  port: 5001
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7900/eureka/
     #拉取间隔时间
     registry-fetch-interval-seconds: 30
-    enabled: false
+    enabled: true
 spring:
   application:
     name: service-order
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    timeout: 2000
+    password:
   activemq:
     broker-url: tcp://127.0.0.1:61616
     user: admin
@@ -39,3 +43,26 @@ spring:
 mybatis:
   mapper-locations:
     - classpath:mapper/*.xml
+
+
+---
+spring:
+  profiles: 5001
+#服务端口
+server:
+  port: 5001
+---
+spring:
+  profiles: 5002
+#服务端口
+server:
+  port: 5002
+
+
+#自定义哨兵
+#sentinel:
+#  address:
+#    - 127.0.0.1:26379
+#    - 127.0.0.1:26479
+#    - 127.0.0.1:26579
+#  masterName: mymaster

@@ -12,7 +12,7 @@
     select
     <include refid="com.mashibing.cloudzuul.dao.CommonGrayRuleDao.Base_Column_List" />
     from common_gray_rule
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
 
 </mapper>

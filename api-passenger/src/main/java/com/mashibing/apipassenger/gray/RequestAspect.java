@@ -38,6 +38,9 @@ public class RequestAspect {
         if (version.trim().equals("v1")){
             RibbonFilterContextHolder.getCurrentContext().add("version","v1");
         }
+        else {
+            RibbonFilterContextHolder.getCurrentContext().add("version",version);
+        }
 
         //此处为自定义灰度
         /*Map<String,String> map = new HashMap<>();

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/1 14:32
- * @Description: TODO
+ * @Description: 验证码相关
  */
 @RestController
 @RequestMapping("/verify-code")
@@ -22,10 +22,25 @@ public class VerificationCodeController {
     @Autowired
     VerificationCodeService verificationCodeService;
 
+    /**
+     * 发送验证码
+     * @param request
+     * @return
+     */
     @PostMapping("/send")
     public ResponseResult send(@RequestBody @Validated ShortMsgRequest request){
 
         return verificationCodeService.send(request.getPhoneNumber());
     }
 
+    /**
+     * 查看验证码
+     * @param request
+     * @return
+     */
+    @PostMapping("/get")
+    public ResponseResult get(@RequestBody @Validated ShortMsgRequest request){
+
+        return verificationCodeService.get(request.getPhoneNumber());
+    }
 }

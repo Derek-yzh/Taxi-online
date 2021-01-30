@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mashibing.lncpay.dao.LcnPayDao">
+  <resultMap id="BaseResultMap" type="com.mashibing.lncpay.entity.LcnPay">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="pay_name" jdbcType="VARCHAR" property="payName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from lcn_pay
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from lcn_pay
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.mashibing.lncpay.entity.LcnPay" useGeneratedKeys="true">
+    insert into lcn_pay (pay_name)
+    values (#{payName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.mashibing.lncpay.entity.LcnPay" useGeneratedKeys="true">
+    insert into lcn_pay
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="payName != null">
+        pay_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="payName != null">
+        #{payName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mashibing.lncpay.entity.LcnPay">
+    update lcn_pay
+    <set>
+      <if test="payName != null">
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mashibing.lncpay.entity.LcnPay">
+    update lcn_pay
+    set pay_name = #{payName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

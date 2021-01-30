@@ -43,7 +43,7 @@ public class SmsServiceImpl implements SmsService {
     @Override
     public ResponseResult sendSms(SmsSendRequest request) {
         log.info(request.toString());
-/*        for (String phoneNumber : request.getReceivers()) {
+        for (String phoneNumber : request.getReceivers()) {
             List<SmsTemplateDto> templates = request.getData();
 
             ServiceSmsRecord sms = new ServiceSmsRecord();
@@ -53,7 +53,6 @@ public class SmsServiceImpl implements SmsService {
                 if (!templateMaps.containsKey(template.getId())){
                     //此处注释掉的内容为，将db模板加载到内存
                     ServiceSmsTemplate t = serviceSmsTemplateCustomDao.selectByTemplateId(template.getId());
-                    System.out.println(t.getTemplateContent());
                     templateMaps.put(template.getId(),t.getTemplateContent());
                 }
 
@@ -65,7 +64,8 @@ public class SmsServiceImpl implements SmsService {
 
                 //发生错误时，不影响其他手机号和模板的发送
                 try {
-                    int result = send(phoneNumber,template.getId(),template.getTemplateMap());
+                    //int result = send(phoneNumber,template.getId(),template.getTemplateMap());
+                    int result = send(phoneNumber,content);
 
                     //组装SMS对象
                     sms.setSendTime(new Date());
@@ -87,10 +87,21 @@ public class SmsServiceImpl implements SmsService {
                 }
 
             }
-        }*/
+        }
 
         return ResponseResult.success("");
     }
+
+
+    private int send(String phoneNumber, String content) {
+        return sendMsg(phoneNumber,content);
+    }
+
+    private int sendMsg(String phoneNumber, String content) {
+        System.out.println(phoneNumber+":"+content);
+        return SmsStatusEnum.SEND_SUCCESS.getCode();
+    }
+
 
     private int send(String phoneNumber, String templateId, Map<String, ?> templateMap) throws Exception {
         JSONObject param = new JSONObject();
@@ -103,6 +114,9 @@ public class SmsServiceImpl implements SmsService {
         /**
          *  供应商 发 短信
          */
+
+        System.out.println(phoneNumber+":"+toString);
+
         return SmsStatusEnum.SEND_SUCCESS.getCode();
     }
 }

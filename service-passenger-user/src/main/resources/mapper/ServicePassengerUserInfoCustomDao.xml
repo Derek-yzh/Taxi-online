@@ -4,7 +4,7 @@
   <select id="selectByPhoneNumber" resultMap="com.mashibing.servicepassengeruser.dao.ServicePassengerUserInfoDao.BaseResultMap" parameterType="java.lang.String" >
     select
     <include refid="com.mashibing.servicepassengeruser.dao.ServicePassengerUserInfoDao.Base_Column_List" />
-    from passenger_user_info
+    from service_passenger_user_info
     where passenger_phone = #{passengerPhone}
   </select>
 </mapper>

@@ -20,6 +20,8 @@ import java.util.concurrent.TimeUnit;
  * @Description: TODO
  */
 @Service
+
+@SuppressWarnings("all")
 public class PassengerUserServiceImpl implements PassengerUserService {
 
 
@@ -31,13 +33,21 @@ public class PassengerUserServiceImpl implements PassengerUserService {
 
     @Override
     public ResponseResult login(String passengerPhone) {
+
+        ServicePassengerUserInfo passenger = servicePassengerUserInfoCustomDao.selectByPhoneNumber(passengerPhone);
+        if (passenger != null){
+            String redisKey = RedisKeyPrefixConstant.PASSENGER_LOGIN_TOKEN_APP_KEY_PRE + passenger.getId();
+            BoundValueOperations<String, String> ops = redisTemplate.boundValueOps(redisKey);
+            return ResponseResult.success(ops.get());
+        }
+
         // 如果数据库没有此用户，插库。可以用分布锁，也可以用 唯一索引。
         // 为什么此时用手机号？
         // 查出用户id
         ServicePassengerUserInfo passengerUserInfo = new ServicePassengerUserInfo();
         passengerUserInfo.setCreateTime(new Date());
         passengerUserInfo.setPassengerGender((byte)1);
-        passengerUserInfo.setPassengerName("");
+        passengerUserInfo.setPassengerName("test");
         passengerUserInfo.setRegisterDate(new Date());
         passengerUserInfo.setUserState((byte)1);
         passengerUserInfo.setPassengerPhone(passengerPhone);
@@ -46,7 +56,7 @@ public class PassengerUserServiceImpl implements PassengerUserService {
 
         long passengerId = passengerUserInfo.getId();
         // 生成 token 的时候，如果要服务端控制，要把它 存到 redis中，在设置过期时间。
-        String token = JwtUtil.createToken(passengerId + "", new Date());
+        String token = JwtUtil.createToken(RedisKeyPrefixConstant.PASSENGER_LOGIN_TOKEN_APP_KEY_PRE + passengerId, new Date());
         //存入redis，设置过期时间
         BoundValueOperations<String, String> stringStringBoundValueOperations = redisTemplate.boundValueOps(RedisKeyPrefixConstant.PASSENGER_LOGIN_TOKEN_APP_KEY_PRE + passengerId);
         stringStringBoundValueOperations.set(token,30, TimeUnit.DAYS);

@@ -1,0 +1,23 @@
+
+#应用名称及验证账号
+spring:
+  application:
+    name: api-driver
+
+
+#注册中心
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7900/eureka/
+    #拉取间隔时间
+    registry-fetch-interval-seconds: 30
+    enabled: true
+  instance:
+    #心跳间隔时间
+    lease-renewal-interval-in-seconds: 30
+
+server:
+  port: 8003
+
+

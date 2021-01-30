@@ -21,6 +21,12 @@
 
     <dependencies>
 
+
+
+
+
+
+
         <!-- json-lib -->
         <dependency>
             <groupId>net.sf.json-lib</groupId>
@@ -28,14 +34,12 @@
             <version>2.4</version>
             <classifier>jdk15</classifier>
         </dependency>
-
         <!--jwt-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt</artifactId>
             <version>0.7.0</version>
         </dependency>
-
         <!--apache 加密-->
         <dependency>
             <groupId>commons-codec</groupId>
@@ -43,6 +47,11 @@
             <version>1.11</version>
             <scope>compile</scope>
         </dependency>
+
+
+
+
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>

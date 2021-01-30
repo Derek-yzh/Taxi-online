@@ -11,4 +11,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface VerificationCodeService {
     ResponseResult send(String phoneNumber);
+
+    ResponseResult get(String phoneNumber);
 }

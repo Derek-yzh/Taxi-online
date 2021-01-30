@@ -44,4 +44,13 @@ public class ServiceVerificationCodeRestTemplateServiceImpl implements ServiceVe
 
         return result;
     }
+
+    @Override
+    public ResponseResult get(int identity, String phoneNumber) {
+        String url = "http://service-verification-code/verify-code/get/"+identity+"/"+phoneNumber;
+
+        ResponseResult result = restTemplate.exchange(url, HttpMethod.GET,new HttpEntity<Object>(null,null),ResponseResult.class).getBody();
+
+        return result;
+    }
 }
