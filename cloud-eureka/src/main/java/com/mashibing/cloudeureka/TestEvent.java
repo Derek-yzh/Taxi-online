@@ -9,14 +9,14 @@ import java.util.Timer;
 /**
  * @Author: Derek
  * @DateTime: 2020/12/29 23:53
- * @Description: TODO
+ * @Description: Eureka对服务下线进行监听
  */
 @Component
 public class TestEvent {
 
     @EventListener
     public void listen(EurekaInstanceCanceledEvent event){
-        // 发邮件 短信
+        //TODO 服务下线: 发邮件 短信
         System.out.println("下线:"+event.getServerId());
     }
 

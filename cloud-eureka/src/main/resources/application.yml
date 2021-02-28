@@ -4,21 +4,21 @@ spring:
     name: eureka
 eureka:
   client:
-    register-with-eureka: true # 解决unavailable-replicas问题
+    register-with-eureka: true #解决unavailable-replicas问题
     fetch-registry: true
     service-url:
       defaultZone: http://eureka-7900:7900/eureka/,http://eureka-7901:7901/eureka/,http://eureka-7902:7902/eureka/
-    registry-fetch-interval-seconds: 30 # 默认30
+    registry-fetch-interval-seconds: 30 #默认30
   server:
-    #自我保护看自己情况
+    #是否开启自我保护 (服务少的不要开启自我保护)
     enable-self-preservation: false
-    #续约阈值，和自我保护相关
+    #续约阈值，和自我保护相关，默认0.85
     renewal-percent-threshold: 0.85
     #server剔除过期服务的时间间隔
     eviction-interval-timer-in-ms: 1000
-    # 关闭从readOnly读注册表                             :加快发现速度
+    #关闭从readOnly读注册表 : 加快发现速度
     use-read-only-response-cache: false
-    # readWrite 和 readOnly 同步时间间隔。(默认30s)
+    #readWrite 和 readOnly 同步时间间隔。(默认30s)
     response-cache-update-interval-ms: 1000
 
 

@@ -9,7 +9,7 @@ eureka:
     registry-fetch-interval-seconds: 30
     enabled: true
   instance:
-    #心跳间隔时间
+    #心跳间隔时间，默认30秒
     lease-renewal-interval-in-seconds: 30
 
 spring:

@@ -20,9 +20,9 @@ public class JwtUtil {
 
     /**
      *
-     * @param subject
+     * @param subject subject
      * @param issueDate 签发时间
-     * @return
+     * @return token
      */
     public static String createToken(String subject, Date issueDate){
         String compactJws = Jwts.builder()
@@ -36,9 +36,9 @@ public class JwtUtil {
 
     /**
      * 解密 jwt
-     * @param token
-     * @return
-     * @throws Exception
+     * @param token token
+     * @return JwtInfo
+     * @throws Exception exception
      */
     public static JwtInfo parseToken(String token) {
         try {
@@ -63,4 +63,5 @@ public class JwtUtil {
         String token = createToken(subject,new Date());
         System.out.println("原始值："+token+"\n解码后:"+parseToken(token));
     }
+
 }
