@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/5 19:46
- * @Description: TODO
+ * @Description: IpFilter
  */
 public class GetIpFilter extends ZuulFilter {
     @Override

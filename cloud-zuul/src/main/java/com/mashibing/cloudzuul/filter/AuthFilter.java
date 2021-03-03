@@ -33,7 +33,7 @@ public class AuthFilter extends ZuulFilter {
      */
     @Override
     public boolean shouldFilter() {
-        //获取上下文
+        //获取上下文 贯穿所有Filter 包含所有参数
         /*Object limit = RequestContext.getCurrentContext().get("limit");
         return "true".equals(limit);*/
 
@@ -63,7 +63,7 @@ public class AuthFilter extends ZuulFilter {
 
                 BoundValueOperations<String, String> stringStringBoundValueOperations = redisTemplate.boundValueOps(tokenUser);
                 String redisToken = stringStringBoundValueOperations.get();
-                if (redisToken.equals(token)){
+                if (StringUtils.isNotBlank(redisToken) && redisToken.equals(token)){
                     return null;
                 }
 
@@ -71,8 +71,7 @@ public class AuthFilter extends ZuulFilter {
 
         }
 
-        requestContext.setSendZuulResponse(false); //设置为false可以在后面filter的shouldFilter做判断走不走
-
+        requestContext.setSendZuulResponse(false); //设置为false 可以在后面filter的shouldFilter做判断走不走
         requestContext.setResponseStatusCode(HttpStatus.SC_UNAUTHORIZED);
         requestContext.setResponseBody("auth fail");
 
@@ -83,7 +82,7 @@ public class AuthFilter extends ZuulFilter {
 
     /**
      * 拦截类型，4种类型
-     * @return
+     * @return filter类型
      */
     @Override
     public String filterType() {
@@ -92,7 +91,7 @@ public class AuthFilter extends ZuulFilter {
 
     /**
      * filter执行的顺序：值越小越在前
-     * @return
+     * @return 顺序值
      */
     @Override
     public int filterOrder() {
