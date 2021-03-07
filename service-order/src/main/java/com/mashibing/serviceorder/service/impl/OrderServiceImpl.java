@@ -11,9 +11,10 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/16 11:53
- * @Description: TODO
+ * @Description: OrderServiceImpl
  */
 @Service
+@SuppressWarnings("all")
 public class OrderServiceImpl implements OrderService {
 
     @Autowired
@@ -21,10 +22,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public boolean grab(int orderId, int driverId) {
-
         TblOrder order = tblOrderDao.selectByPrimaryKey(orderId);
         try {
-            TimeUnit.MILLISECONDS.sleep(2000);
+            TimeUnit.MILLISECONDS.sleep(200);
         } catch (InterruptedException e) {e.printStackTrace();}
 
         // 还有填写其他很多业务信息。包括哪个司机啥的。起点，终点。
@@ -33,7 +33,6 @@ public class OrderServiceImpl implements OrderService {
             tblOrderDao.updateByPrimaryKeySelective(order);
             return true;
         }
-
         return false;
     }
 }

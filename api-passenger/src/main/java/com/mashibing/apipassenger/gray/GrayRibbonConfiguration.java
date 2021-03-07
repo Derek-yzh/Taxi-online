@@ -10,10 +10,10 @@ import org.springframework.context.annotation.Configuration;
  * @DateTime: 2020/11/4 13:23
  * @Description: GrayRibbonConfiguration 灰度Ribbon配置
  */
-@ExcudeRibbonConfig
+//@ExcudeRibbonConfig
 public class GrayRibbonConfiguration {
 
-    @Bean
+    //@Bean
     public IRule ribbonRule(){
         return new GrayRule();
     }

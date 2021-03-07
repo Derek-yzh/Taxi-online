@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/10 19:22
- * @Description: TODO
+ * @Description: 分布式事务 TCC
  */
 @RestController
 @RequestMapping
@@ -50,7 +50,6 @@ public class OrderTccController {
     }
 
     public String confirmAdd(LcnOrder bean){
-
         System.out.println("order confirm");
         return "新增订单成功";
     }

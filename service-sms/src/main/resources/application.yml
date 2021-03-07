@@ -63,5 +63,6 @@ eureka:
   instance:
     metadata-map:
       version: v2
+      a: a2
 server:
   port: 8004

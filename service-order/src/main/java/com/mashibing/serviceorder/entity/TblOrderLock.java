@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * tbl_order_lock
- * @author 
+ * @author mysql做分布式锁使用的表
  */
 @Data
 public class TblOrderLock implements Serializable {

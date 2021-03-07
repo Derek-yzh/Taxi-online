@@ -11,7 +11,7 @@ import javax.jms.Queue;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/9 13:21
- * @Description: activeMQ配置
+ * @Description: 分布式事务  消息队列+定时任务+本地事件表：activeMQ配置
  */
 @Configuration
 public class ActiveMQConfig {

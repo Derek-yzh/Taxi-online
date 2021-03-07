@@ -1,5 +1,6 @@
 package com.mashibing.apipassenger.controller;
 
+import com.google.common.collect.Maps;
 import com.mashibing.apipassenger.request.UserAuthRequest;
 import com.mashibing.apipassenger.service.AuthService;
 import com.mashibing.internalcommon.dto.ResponseResult;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/1 20:08
- * @Description: TODO
+ * @Description:
  */
 @RestController
 @RequestMapping("/auth")
@@ -26,7 +27,6 @@ public class AuthController {
 
         String passengerPhone = userAuthRequest.getPassengerPhone();
         String code = userAuthRequest.getCode();
-
         return authService.auth(passengerPhone,code);
     }
 

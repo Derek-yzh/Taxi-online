@@ -27,7 +27,7 @@ public class GrabRedisLockServiceImpl implements GrabService {
         //生成key
         String lock = "order_"+(orderId+"");
 
-        //注意点：1.加超时时间 setnx 2.超时时间一次性加如下行所示 否则会有加不上的情况
+        //注意点：1.加超时时间 setnx 2.超时时间一次性加如下行所示 否则会有加不上的情况·
         Boolean lockStatus = stringRedisTemplate.opsForValue().setIfAbsent(lock.intern(), driverId + "", 30L, TimeUnit.SECONDS);
         // 开个子线程，原来时间N，每个n/3，去续上n
 

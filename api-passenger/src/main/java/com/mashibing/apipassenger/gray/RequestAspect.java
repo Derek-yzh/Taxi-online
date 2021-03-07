@@ -17,7 +17,7 @@ import java.util.Map;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/4 13:12
- * @Description: TODO
+ * @Description: TODO 灰度发布 服务灰度 切面
  */
 @Aspect
 @Component
@@ -42,10 +42,6 @@ public class RequestAspect {
             RibbonFilterContextHolder.getCurrentContext().add("version",version);
         }
 
-        //此处为自定义灰度
-        /*Map<String,String> map = new HashMap<>();
-        map.put("version",version);
-        RibbonParameters.set(map);*/
     }
 
 }

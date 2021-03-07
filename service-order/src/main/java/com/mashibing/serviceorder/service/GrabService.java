@@ -3,7 +3,7 @@ package com.mashibing.serviceorder.service;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/15 20:24
- * @Description: TODO
+ * @Description: 抢单服务
  */
 public interface GrabService {
 
@@ -13,6 +13,5 @@ public interface GrabService {
      * @param driverId
      */
     String grabOrder(int orderId, int driverId);
-
 
 }

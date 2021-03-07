@@ -15,9 +15,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/16 18:47
- * @Description: TODO
+ * @Description: grabRedisRedissonRedLockLockService
  */
-@Service("grabRedisRedissonRedLockLockService")
+//@Service("grabRedisRedissonRedLockLockService")
 public class GrabRedisRedissonRedLockLockServiceImpl implements GrabService {
 
     @Autowired

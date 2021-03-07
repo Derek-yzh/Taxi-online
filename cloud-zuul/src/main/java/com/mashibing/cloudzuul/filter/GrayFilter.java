@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 @Component
 @SuppressWarnings("all")
 public class GrayFilter extends ZuulFilter {
+
     @Override
     public String filterType() {
         return FilterConstants.ROUTE_TYPE;
@@ -50,9 +51,7 @@ public class GrayFilter extends ZuulFilter {
         int userId = Integer.parseInt(request.getHeader("userId"));
         //查库
         CommonGrayRule commonGrayRule = commonGrayRuleDaoCustomer.selectByUserId(userId);
-        if (commonGrayRule == null){
-            return null;
-        }
+        if (commonGrayRule == null) return null;
         String version = commonGrayRule.getMetaVersion();
         RibbonFilterContextHolder.getCurrentContext().add("version", version);
 

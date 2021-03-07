@@ -8,7 +8,7 @@ import javax.validation.constraints.Pattern;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/1 20:16
- * @Description: TODO
+ * @Description: UserAuthRequest
  */
 @Data
 public class UserAuthRequest {

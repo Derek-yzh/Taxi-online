@@ -17,9 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 @ComponentScan(
         excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcudeRibbonConfig.class)
+        @ComponentScan.Filter(type = FilterType.ANNOTATION,value = ExcudeRibbonConfig.class)
 })
-//@RibbonClient(name = "service-sms",configuration = GrayRibbonConfiguration.class) //服务之间灰度发布
 public class ApiPassengerApplication {
 
     public static void main(String[] args) {

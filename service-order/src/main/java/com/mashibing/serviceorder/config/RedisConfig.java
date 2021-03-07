@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2020/11/16 18:03
  * @Description: TODO
  */
-@Component
+//@Component
 public class RedisConfig {
 
     @Autowired

@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: Derek
  * @DateTime: 2020/10/31 20:56
- * @Description: TODO
+ * @Description:
  */
 @Service
 @SuppressWarnings("all")
@@ -28,11 +28,11 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public ResponseResult<VerifyCodeResponse> generate(int identity, String phoneNumber) {
-        //校验 发送时限，三挡验证，不能无限制发短信
+        //TODO 校验 发送时限，三挡验证，不能无限制发短信
         checkSendCodeTimeLimit(phoneNumber);
 
         // 0-1  1-10  100000-1000000 :六位
-        String code = String.valueOf((int)( (Math.random()*9+1)*Math.pow(10,5)));
+        String code = String.valueOf((int)( (Math.random()*9+1) * Math.pow(10,5)));
 
         //生成redis key
         String keyPre = generateKeyPreByIdentity(identity);
@@ -62,7 +62,7 @@ public class VerifyCodeServiceImpl implements VerifyCodeService {
 
     @Override
     public ResponseResult verify(int identity, String phoneNumber, String code) {
-        //三档验证
+        //TODO 三档验证
 
         //生成redis key
         String keyPre = generateKeyPreByIdentity(identity);

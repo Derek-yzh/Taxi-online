@@ -1,16 +1,16 @@
-
 server:
   port: 8080
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:7900/eureka/
-    #拉取间隔时间
-    registry-fetch-interval-seconds: 30
+    # 拉取间隔时间(默认30)
+    registry-fetch-interval-seconds: 5
     enabled: true
   instance:
-    #心跳间隔时间，默认30秒
-    lease-renewal-interval-in-seconds: 30
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 10
 
 spring:
   application:
@@ -18,6 +18,3 @@ spring:
 logging:
   level:
     root: info
-
-# 配置灰度 发布
-

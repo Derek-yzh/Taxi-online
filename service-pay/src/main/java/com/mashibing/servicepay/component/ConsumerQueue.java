@@ -14,9 +14,10 @@ import javax.jms.TextMessage;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/9 15:08
- * @Description: TODO
+ * @Description: ConsumerQueue
  */
 @Component
+@SuppressWarnings("all")
 public class ConsumerQueue {
 
     @Autowired

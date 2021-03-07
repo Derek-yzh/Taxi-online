@@ -37,7 +37,7 @@ public class AuthFilter extends ZuulFilter {
         /*Object limit = RequestContext.getCurrentContext().get("limit");
         return "true".equals(limit);*/
 
-        return true;
+        return false;//TODO 关闭鉴权
     }
 
     /**

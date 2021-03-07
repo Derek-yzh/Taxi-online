@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LimitFilter_Google extends ZuulFilter {
 
-    //令牌桶  每秒2个
+    //令牌桶  每秒3个
     private static final RateLimiter RATE_LIMITER = RateLimiter.create(3);
     @Override
     public Object run() throws ZuulException {

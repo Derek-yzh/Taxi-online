@@ -12,9 +12,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/16 16:50
- * @Description: TODO
+ * @Description: grabRedisRedissonService
  */
-@Service("grabRedisRedissonService")
+//@Service("grabRedisRedissonService")
 @SuppressWarnings("all")
 public class GrabRedisRedissonServiceImpl implements GrabService {
 

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @Author: Derek
  * @DateTime: 2021/1/8 13:50
- * @Description: TODO
+ * @Description: RandomRule
  */
 public class RandomRule extends AbstractLoadBalancerRule {
 

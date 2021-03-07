@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/10 19:58
- * @Description: TODO
+ * @Description: 分布式事务 TCC
  */
 @RestController
 @RequestMapping

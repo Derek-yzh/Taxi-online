@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/10 19:58
- * @Description: TODO
+ * @Description: 分布式事务 Lcn
  */
 @RestController
 public class PayController {

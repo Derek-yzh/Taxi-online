@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/15 20:22
- * @Description: TODO
+ * @Description: 抢单 测试分布式锁
  */
 @RestController
 @RequestMapping("/grab")
@@ -19,20 +19,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class GrabOrderController {
 
     @Autowired
-    //@Qualifier("grabNoLockService")//无锁
-    //@Qualifier("grabJvmLockService")//jvm锁
-    //@Qualifier("grabMysqlLockService")//mysql锁
+    @Qualifier("grabNoLockService")//无锁
+    private GrabService grabNoLockService;
+
+    @Autowired
+    @Qualifier("grabJvmLockService")//jvm锁
+    private GrabService grabJvmLockService;
+
+    @Autowired
+    @Qualifier("grabMysqlLockService")//mysql锁
+    private GrabService grabMysqlLockService;
+
+    //@Autowired
     //@Qualifier("grabRedisLockService")//手写redis
-    //单个redisson
-    //@Qualifier("grabRedisRedissonService")
-    //红锁
-    @Qualifier("grabRedisRedissonRedLockLockService")
+    private GrabService grabRedisLockService;
+
+    //@Autowired
+    //@Qualifier("grabRedisRedissonService") //单个redisson
+    private GrabService grabRedisRedissonService;
+
+    //@Autowired
+    //@Qualifier("grabRedisRedissonRedLockLockService")//红锁
     private GrabService grabService;
 
     @GetMapping("/do/{orderId}")
     public String grab(@PathVariable("orderId") int orderId, int driverId){
         System.out.println("order:"+orderId+",driverId:"+driverId);
-        grabService.grabOrder(orderId,driverId);
+        grabMysqlLockService.grabOrder(orderId,driverId);
         return "";
     }
+
 }

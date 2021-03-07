@@ -2,6 +2,7 @@ package com.mashibing.servicepay.config;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.RedeliveryPolicy;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +12,7 @@ import org.springframework.jms.config.JmsListenerContainerFactory;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/9 14:55
- * @Description: TODO
+ * @Description: 分布式事务  消息队列+定时任务+本地事件表：activeMQ配置
  */
 @Configuration
 public class ActiveMQConfig {
@@ -21,7 +22,7 @@ public class ActiveMQConfig {
 
     /**
      * 连接工厂
-     * @return
+     * @return activeMQConnectionFactory
      */
     @Bean
     public ActiveMQConnectionFactory connectionFactory(){
@@ -32,7 +33,7 @@ public class ActiveMQConfig {
 
     /**
      * 重发配置
-     * @return
+     * @return RedeliveryPolicy
      */
     @Bean
     public RedeliveryPolicy redeliveryPolicy(){

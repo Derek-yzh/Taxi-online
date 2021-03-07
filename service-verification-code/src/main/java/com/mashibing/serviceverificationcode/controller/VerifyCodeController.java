@@ -35,6 +35,11 @@ public class VerifyCodeController {
         return verifyCodeService.generate(identity,phoneNumber);
     }
 
+    /**
+     * 校验验证码
+     * @param request 请求
+     * @return
+     */
     @PostMapping("/verify")
     public ResponseResult verify(@RequestBody VerifyCodeRequest request){
         log.info("/verify-code/verify  request:"+ JSONObject.fromObject(request));

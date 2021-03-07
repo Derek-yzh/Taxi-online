@@ -7,10 +7,10 @@ import org.springframework.stereotype.Component;
  * @DateTime: 2020/11/4 12:54
  * @Description: RibbonParameters
  */
-@Component
+//@Component
 public class RibbonParameters {
 
-    private static final ThreadLocal local = new ThreadLocal();
+    private static final ThreadLocal  local = new ThreadLocal();
 
     public static <T> T get(){
         return (T)local.get();

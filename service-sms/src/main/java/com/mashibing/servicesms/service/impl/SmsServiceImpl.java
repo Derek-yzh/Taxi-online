@@ -24,7 +24,7 @@ import java.util.Map;
 /**
  * @Author: Derek
  * @DateTime: 2020/11/1 18:58
- * @Description: TODO
+ * @Description:
  */
 @Service
 @Slf4j
@@ -64,7 +64,6 @@ public class SmsServiceImpl implements SmsService {
 
                 //发生错误时，不影响其他手机号和模板的发送
                 try {
-                    //int result = send(phoneNumber,template.getId(),template.getTemplateMap());
                     int result = send(phoneNumber,content);
 
                     //组装SMS对象
@@ -97,6 +96,7 @@ public class SmsServiceImpl implements SmsService {
         return sendMsg(phoneNumber,content);
     }
 
+    //TODO 模拟短信发送
     private int sendMsg(String phoneNumber, String content) {
         System.out.println(phoneNumber+":"+content);
         return SmsStatusEnum.SEND_SUCCESS.getCode();

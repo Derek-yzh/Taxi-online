@@ -55,6 +55,8 @@ public class GrayRule extends AbstractLoadBalancerRule {
                 //Server.MetaInfo metaInfo = server.getMetaInfo();
                 Map<String, String> metadata = ((DiscoveryEnabledServer) server).getInstanceInfo().getMetadata();
                 String version1 = metadata.get("version");
+
+                //服务的meta也有了，用户的version也有了
                 if (version.trim().equals(version1)){
                     return server;
                 }

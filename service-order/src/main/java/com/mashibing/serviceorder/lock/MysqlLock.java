@@ -59,6 +59,7 @@ public class MysqlLock implements Lock {
         mapper.deleteByPrimaryKey(orderLockThreadLocal.get().getOrderId());
         System.out.println("解锁对象："+orderLockThreadLocal.get());
         orderLockThreadLocal.remove();
+        //TODO 触发器 防止unlock失败 像redis过期时间一样
     }
 
 
